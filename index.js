@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const messages = require('./models/messagesQuery')
 const app = express();
 
 app.use(morgan('tiny'));
@@ -14,6 +15,12 @@ app.get('/', (rec, res) => {
         'message': 'full stack message board! ☁'
     });
 }); 
+
+app.get('/messages', (req, res) => {
+    messages.getAll().then((messages) => {
+        res.json(messages);
+    });
+});
 
 const port = process.env.PORT || 5000;
 
