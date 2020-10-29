@@ -19,7 +19,7 @@ function getAll() {
 }
 
 function create(message) {
-    const result = Joi.validate(message, schema);
+    const result = schema.validate(message);
     if(result.error == null) {
         message.created = new Date;
         return messages.insert(message);

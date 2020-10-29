@@ -14,7 +14,7 @@ app.get('/', (rec, res) => {
     res.json({
         'message': 'full stack message board! ☁'
     });
-}); 
+});
 
 app.get('/messages', (req, res) => {
     messages.getAll().then((messages) => {
