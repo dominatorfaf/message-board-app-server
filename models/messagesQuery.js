@@ -18,11 +18,16 @@ function getAll() {
 }
 
 function create(message) {
-    const result = Joi.validate(message);
-
-    return messages.insert(message);
+    const result = Joi.validate(message, schema);
+    if(result.error == null) {
+        message.created = new Date;
+        return messages.insert(message);
+    } else {
+        return Promise.reject(result);
+    }
 }
 
 module.exports = {
+    create,
     getAll
 };
