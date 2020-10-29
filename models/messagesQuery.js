@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const db = require('../db/connection');
 
 const schema = Joi.object().keys({
